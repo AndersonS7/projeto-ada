@@ -1,7 +1,5 @@
-# projeto-ada
-projeto consiste em criar um todo list usando o que foi ensinado durante o módulo de lógica de programação
-
-### Prazo final para entregar o trabalho, dia 28/11
+# projeto-ada | Entregar até dia 28/11
+> projeto consiste em criar um todo list usando o que foi ensinado durante o módulo de lógica de programação
 
 ## Projeto Finalizado!
 > Todas as funcionalidades pedidas foram adicionadas. Também foram adicionadas algumas verificações e validações de dados. </br>
