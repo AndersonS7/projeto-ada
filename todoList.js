@@ -1,6 +1,5 @@
 let tasks = [];
 
-// Adicionar uma tarefa
 function addTask(task) {
     let id = idGenerator(tasks);
 
@@ -10,12 +9,15 @@ function addTask(task) {
     });
 }
 
-// Editar uma tarefa salva
-function updateTask(task) {
-
+function updateTask(id, novaDesc) {
+    return tasks.map(task => {
+        if (task.id === id) {
+            task.desc = novaDesc;
+        }
+        return task;
+    });
 }
 
-// Remover uma tarefa salva
 function deleteTask(id) {
     let index = tasks.findIndex(task => task.id === id);
     if (index !== -1) {
@@ -24,20 +26,16 @@ function deleteTask(id) {
     return tasks;
 }
 
-// Listar todas as tarefas salvas
 function showTask(tasks) {
     tasks.forEach(item => console.log(`${item.id}: ${item.desc}`))
 }
 
-// Obter uma tarefa, através de um parâmetro (id)
 function getTask(id) {
-    let obj = tasks.filter(task => {
+    return tasks.filter(task => {
         if (task.id == id) {
             return task;
         }
     });
-
-    return obj;
 }
 
 //-----
@@ -59,8 +57,8 @@ addTask('Estudar para a prova');
 addTask('Comprar leite com pão');
 addTask('Comprar comida pro cachorro');
 
-console.log(getTask(2));
-console.log('-----------')
+// console.log(getTask(2));
+// console.log('-----------')
 
 showTask(tasks);
 console.log('-----------')
@@ -69,3 +67,11 @@ deleteTask(2);
 
 showTask(tasks);
 console.log('-----------')
+
+addTask('Fazer o projeto da Ada Teach');
+showTask(tasks);
+console.log('-----------')
+
+updateTask(4, 'Fazer o projeto da Ada e subir na plataforma')
+showTask(tasks);
+console.log('-----------');
