@@ -10,20 +10,38 @@ function addTask(task) {
 }
 
 function updateTask(id, novaDesc) {
-    return tasks.map(task => {
-        if (task.id === id) {
-            task.desc = novaDesc;
-        }
-        return task;
-    });
+    try {
+        if (id == undefined || id == null || isNaN(id))
+            throw new Error("O id informado é inválido!");
+
+        return tasks.map(task => {
+            if (task.id === id) {
+                task.desc = novaDesc;
+            }
+            return task;
+        });
+    }
+    catch (erro) {
+        console.error("Erro: " + erro.message);
+    }
 }
 
 function deleteTask(id) {
-    let index = tasks.findIndex(task => task.id === id);
-    if (index !== -1) {
-        tasks.splice(index, 1);
+
+    try {
+        if (id == undefined || id == null || isNaN(id))
+            throw new Error("O id informado é inválido!");
+
+        let index = tasks.findIndex(task => task.id === id);
+        if (index !== -1) {
+            tasks.splice(index, 1);
+        }
+        return tasks;
     }
-    return tasks;
+    catch (erro) {
+        console.error("Erro: " + erro.message);
+    }
+
 }
 
 function showTask(tasks) {
@@ -31,11 +49,20 @@ function showTask(tasks) {
 }
 
 function getTask(id) {
-    return tasks.filter(task => {
-        if (task.id == id) {
-            return task;
-        }
-    });
+
+    try {
+        if (id == undefined || id == null || isNaN(id))
+            throw new Error("O id informado é inválido!");
+
+        return tasks.filter(task => {
+            if (task.id == id) {
+                return task;
+            }
+        });
+    }
+    catch (erro) {
+        console.error("Erro: " + erro.message);
+    }
 }
 
 //-----
@@ -52,26 +79,35 @@ function idGenerator(tasks) {
     return 0;
 }
 
-addTask('Comprar ovo com bacon');
+//---- ADD TAREFAS
+addTask('Comprar ovo e carne');
 addTask('Estudar para a prova');
 addTask('Comprar leite com pão');
 addTask('Comprar comida pro cachorro');
 
-// console.log(getTask(2));
-// console.log('-----------')
-
+//console.log(getTask(2));
+console.log('----- MOSTRAR LISTA DE TAREFAS -----')
 showTask(tasks);
-console.log('-----------')
 
+console.log('')
+
+console.log('----- PEGER TAREFA POR ID -----')
+console.log(getTask(2));
+
+console.log('')
+
+console.log('----- DELETAR TAREFA -----')
 deleteTask(2);
-
 showTask(tasks);
-console.log('-----------')
 
+console.log('')
+
+console.log('----- ADD NOVA TAREFA -----')
 addTask('Fazer o projeto da Ada Teach');
 showTask(tasks);
-console.log('-----------')
 
-updateTask(4, 'Fazer o projeto da Ada e subir na plataforma')
+console.log('')
+
+console.log('----- ATUALIZAR TAREFA -----')
+updateTask(0, 'Editado.....')
 showTask(tasks);
-console.log('-----------');
