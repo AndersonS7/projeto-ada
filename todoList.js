@@ -1,4 +1,4 @@
-const tasks = [];
+let tasks = [];
 
 // Adicionar uma tarefa
 function addTask(task) {
@@ -16,8 +16,12 @@ function updateTask(task) {
 }
 
 // Remover uma tarefa salva
-function deleteTask(task) {
-
+function deleteTask(id) {
+    let index = tasks.findIndex(task => task.id === id);
+    if (index !== -1) {
+        tasks.splice(index, 1);
+    }
+    return tasks;
 }
 
 // Listar todas as tarefas salvas
@@ -27,15 +31,16 @@ function showTask(tasks) {
 
 // Obter uma tarefa, através de um parâmetro (id)
 function getTask(id) {
-    //testar função indexOf do próprio array
-    // tasks.find((task) => {
-    //     if (task.id == id) {
-    //         console.log(task.desc)
-    //         return task.desc;
-    //     }
-    // });
+    let obj = tasks.filter(task => {
+        if (task.id == id) {
+            return task;
+        }
+    });
+
+    return obj;
 }
 
+//-----
 function idGenerator(tasks) {
     let id = null;
 
@@ -55,6 +60,12 @@ addTask('Comprar leite com pão');
 addTask('Comprar comida pro cachorro');
 
 console.log(getTask(2));
-
 console.log('-----------')
+
 showTask(tasks);
+console.log('-----------')
+
+deleteTask(2);
+
+showTask(tasks);
+console.log('-----------')
